@@ -14,7 +14,10 @@ export class Nav extends React.Component {
 export class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    const children = props.children,
+  }
+
+  render() {
+    const children = this.props.children,
       other = [],
       map = new Map();
 
@@ -29,16 +32,11 @@ export class NavBar extends React.Component {
       }
     }
 
-    this.map = map;
-    this.other = other;
-  }
-
-  render() {
     return (
       <nav className={classify("navbar", this.props.className)}>
-        {this.map[NavBarBrand]}
-        <Nav className="navbar-nav">{this.map[NavLink]}</Nav>
-        {this.other}
+        {map[NavBarBrand]}
+        <Nav className="navbar-nav">{map[NavLink]}</Nav>
+        {other}
       </nav>
     );
   }
@@ -48,7 +46,7 @@ export class NavBarBrand extends React.Component {
   render() {
     const props = this.props;
     return (
-      <a className="navbar-brand" href={props.href}>
+      <a {...props} className="navbar-brand">
         {props.children}
       </a>
     );
@@ -60,8 +58,8 @@ export class NavLink extends React.Component {
     const props = this.props;
     return (
       <a
+        {...props}
         className={classify("nav", "-item -link " + (props.className || ""))}
-        href={props.href || "#"}
       >
         {props.children}
       </a>

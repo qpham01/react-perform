@@ -11,6 +11,8 @@ export default class App extends React.Component {
 
     this.onClick = this.onClick.bind(this);
     this.onReset = this.onReset.bind(this);
+    this.counterClicked = this.counterClicked.bind(this);
+
     this.state = { click: 0, labels: [] };
   }
 
@@ -21,6 +23,10 @@ export default class App extends React.Component {
 
   onReset(e) {
     this.setState({ click: 0, labels: [] });
+  }
+
+  counterClicked(e) {
+    this.setState({ click: this.state.click + 1 });
   }
 
   render() {
@@ -34,7 +40,9 @@ export default class App extends React.Component {
           <NavBarBrand href="http://02geek.com">02GEEK</NavBarBrand>
           <NavLink href="#">This is Active</NavLink>
           <NavLink href="#">Link</NavLink>
-          <NavLink>Link</NavLink>
+          <NavLink onClick={this.counterClicked} href="#">
+            {`Click count: ${this.state.click}`}
+          </NavLink>
           <NavLink className="disabled" href="#">
             Disabled
           </NavLink>
