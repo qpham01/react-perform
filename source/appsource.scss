@@ -1,0 +1,46 @@
+@mixin background-it($path){
+	background-image:$path;
+	color:white;
+}
+
+
+$image: url(/img/forest-1198698_1280.jpg);
+$text-color: yellow;
+
+
+.custom{
+	@include background-it($image);
+
+}
+
+.app-appear{
+	opacity:0.01;
+
+	&.app-appear-active {
+	  opacity: 1;
+	  transition: opacity 500ms ease-in;
+	}
+
+}
+
+.app-enter{
+	opacity:0.01;
+	&-active {
+	  opacity: 1;
+	  transition: opacity 5s ease-in;
+	}
+}
+
+
+
+.app-leave{
+	opacity:1;
+	&-active {
+	  opacity: 0;
+	  transition: opacity 500ms ease-out;
+	}
+}
+
+
+
+
